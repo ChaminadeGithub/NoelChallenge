@@ -1,0 +1,247 @@
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .wish-content {
+            position: relative;
+            width: 900px;
+            height: 900px;
+            background-image: url('ww.png');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.3); /* Added black overlay */
+            background-blend-mode: overlay; /* Blend the black color with the image */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wish-content h1 {
+            font-size: 60px;
+            color: white;
+            text-shadow: 3px 3px 5px rgba(255, 0, 0, 0.7);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        #displayName {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 55px;
+            color: white;
+            text-shadow: 5px 5px 20px rgba(255, 0, 0, 0.7), 0px 0px 15px rgba(255, 0, 0, 0.5);
+            padding: 10px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        #uploadedPhoto {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgb(216, 20, 20);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<video class="background-video" autoplay loop muted>
+    <source src="bg.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la balise vidéo.
+</video>
+
+<div class="wish-container">
+    <div class="wish-content">
+        <label for="fileInput" style="cursor: pointer;">
+            <img id="uploadedPhoto" src="" alt="Photo de l'utilisateur">
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display:none">
+        <h1>Meilleurs Vœux, <span id="displayName"></span>!</h1>
+    </div>
+</div>
+
+<script>
+    // Récupérer et afficher le nom depuis les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const displayNameElement = document.getElementById('displayName');
+    displayNameElement.textContent = name ? name : 'Invité';
+    
+    // Sélectionner les éléments pour l'image
+    const fileInput = document.getElementById('fileInput');
+    const uploadedPhotoElement = document.getElementById('uploadedPhoto');
+    
+    // Permettre le téléchargement et l'affichage de la photo
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedPhotoElement.src = e.target.result; // Charger l'image
+                uploadedPhotoElement.alt = "Photo de l'utilisateur"; // Définir un alt
+            };
+            reader.readAsDataURL(file); // Lire le fichier comme URL de données
+        }
+    });
+    
+    // Afficher le champ de téléchargement d'image lorsque l'utilisateur clique sur l'image
+    uploadedPhotoElement.addEventListener('click', () => {
+        fileInput.click(); // Ouvrir la boîte de dialogue pour choisir un fichier
+    });
+</script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .wish-content {
+            position: relative;
+            width: 900px;
+            height: 900px;
+            background-image: url('ww.png');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.1); /* Added black overlay */
+            background-blend-mode: overlay; /* Blend the black color with the image */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wish-content h1 {
+            font-size: 60px;
+            color: rgb(238, 9, 9);
+            text-shadow: 3px 3px 5px rgb(255, 255, 255);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        #displayName {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 55px;
+            color: rgb(255, 255, 255);
+            text-shadow: 5px 5px 20px rgb(236, 10, 10), 0px 0px 15px rgba(230, 4, 4, 0.973);
+            padding: 10px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        #uploadedPhoto {
+            width: 230px;
+            height: 230px;
+            border-radius: 30%;
+            object-fit: cover;
+            border: 3px solid rgb(216, 20, 20);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<video class="background-video" autoplay loop muted>
+    <source src="bg.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la balise vidéo.
+</video>
+
+<div class="wish-container">
+    <div class="wish-content">
+        <label for="fileInput" style="cursor: pointer;">
+            <br>
+            <br>
+            <img id="uploadedPhoto" src="" alt="Photo de l'utilisateur" title="Cliquez pour télécharger une image">
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display:none">
+        <h1>Merry Christmas, <span id="displayName"></span>🎄🎄🎄🎄</h1>
+    </div>
+</div>
+
+<script>
+    // Récupérer le nom depuis les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const displayNameElement = document.getElementById('displayName');
+    displayNameElement.textContent = name ? name : 'Invité';
+
+    // Récupérer l'image depuis le localStorage
+    const userPhoto = localStorage.getItem('userPhoto');
+    const uploadedPhotoElement = document.getElementById('uploadedPhoto');
+
+    // Afficher l'image téléchargée dans le cercle
+    if (userPhoto) {
+        uploadedPhotoElement.src = userPhoto; // Définir la source de l'image
+        uploadedPhotoElement.alt = "Photo de l'utilisateur"; // Définir l'alt de l'image
+    }
+
+    // Permettre le téléchargement et l'affichage de la photo
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedPhotoElement.src = e.target.result; // Charger l'image
+                uploadedPhotoElement.alt = "Photo de l'utilisateur"; // Définir l'alt
+                localStorage.setItem('userPhoto', e.target.result); // Sauvegarder l'image dans localStorage
+            };
+            reader.readAsDataURL(file); // Lire le fichier comme URL de données
+        }
+    });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .wish-content {
+            position: relative;
+            width: 900px;
+            height: 900px;
+            background-image: url('ww.png');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.1); /* Added black overlay */
+            background-blend-mode: overlay; /* Blend the black color with the image */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wish-content h1 {
+            font-size: 60px;
+            color: rgb(238, 9, 9);
+            text-shadow: 3px 3px 5px rgb(255, 255, 255);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        #displayName {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 55px;
+            color: rgb(255, 255, 255);
+            text-shadow: 5px 5px 20px rgb(236, 10, 10), 0px 0px 15px rgba(230, 4, 4, 0.973);
+            padding: 10px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        #uploadedPhoto {
+            width: 230px;
+            height: 230px;
+            border-radius: 30%;
+            object-fit: cover;
+            border: 3px solid rgb(216, 20, 20);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #ffffff;
+            color: rgb(31, 1, 202);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background-color: #127405;
+        }
+    </style>
+</head>
+<body>
+
+<video class="background-video" autoplay loop muted>
+    <source src="bg.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la balise vidéo.
+</video>
+       <!-- Télécharger l'image depuis le dossier "kdo" -->
+       <a href="kdo/w.png" download="image_noel.jpg">
+        <button class="download-btn">🎁Mon Cadeau🎁</button>
+    </a>
+    
+    <!-- Bouton pour télécharger la section -->
+    <button class="download-btn" id="downloadSection">Exporter 💻</button>
+<div class="wish-container">
+    
+    <div class="wish-content">
+        <label for="fileInput" style="cursor: pointer;">
+            <br>
+            <br>
+            <img id="uploadedPhoto" src="" alt="Photo de l'utilisateur" title="Cliquez pour télécharger une image">
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display:none">
+        <h1>Merry Christmas,<span id="displayName"></span></h1>
+        <h1>🎄🎅🎄🎅</h1>
+    </div>
+</div>
+
+<script>
+    // Récupérer le nom depuis les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const displayNameElement = document.getElementById('displayName');
+    displayNameElement.textContent = name ? name : 'Invité';
+
+    // Récupérer l'image depuis le localStorage
+    const userPhoto = localStorage.getItem('userPhoto');
+    const uploadedPhotoElement = document.getElementById('uploadedPhoto');
+
+    // Afficher l'image téléchargée dans le cercle
+    if (userPhoto) {
+        uploadedPhotoElement.src = userPhoto; // Définir la source de l'image
+        uploadedPhotoElement.alt = "Photo de l'utilisateur"; // Définir l'alt de l'image
+    }
+
+    // Permettre le téléchargement et l'affichage de la photo
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedPhotoElement.src = e.target.result; // Charger l'image
+                uploadedPhotoElement.alt = "Photo de l'utilisateur"; // Définir l'alt
+                localStorage.setItem('userPhoto', e.target.result); // Sauvegarder l'image dans localStorage
+            };
+            reader.readAsDataURL(file); // Lire le fichier comme URL de données
+        }
+    });
+
+    // Fonction pour télécharger la section de la page avec dom-to-image
+    document.getElementById('downloadSection').addEventListener('click', () => {
+        const node = document.querySelector(".wish-content");
+
+        // Utilisation de dom-to-image pour générer l'image PNG
+        domtoimage.toPng(node)
+            .then(function (dataUrl) {
+                const link = document.createElement('a');
+                link.href = dataUrl; // Lien vers l'image générée
+                link.download = 'section_wish_page.png'; // Nom du fichier à télécharger
+                link.click(); // Simuler le clic pour déclencher le téléchargement
+            })
+            .catch(function (error) {
+                console.error('Erreur lors de la capture de la section en image :', error);
+            });
+    });
+</script>
+
+<!-- Inclure html2canvas pour la capture de la section -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+
+</body>
+</html>

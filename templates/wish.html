@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .wish-content {
+            position: relative;
+            width: 70%;
+            padding: 50px;
+            background-image: url('background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .wish-content h1 {
+            font-size: 60px;
+            color: white;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<video class="background-video" autoplay loop muted>
+    <source src="background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="wish-container">
+    <div class="wish-content">
+        <h1>Meilleurs Vœux, <span id="displayName"></span>!</h1>
+    </div>
+</div>
+
+<script>
+    // Get the name from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+
+    // Display the name
+    const displayNameElement = document.getElementById('displayName');
+    displayNameElement.textContent = name ? name : 'Invité';
+</script>
+
+</body>
+</html>
