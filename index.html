@@ -54,6 +54,41 @@
         .form-container button:hover {
             background-color: #db0505;
         }
+
+        /* Pour les écrans de taille inférieure à 768px */
+@media (max-width: 768px) {
+    .wish-content {
+        width: 100%; /* Adapte la largeur à l'écran */
+        height: auto; /* Ajuste automatiquement la hauteur */
+        padding: 20px; /* Ajoute un espace autour */
+    }
+
+    .wish-content h1 {
+        font-size: 30px; /* Diminue la taille de la police */
+    }
+
+    #uploadedPhoto {
+        width: 150px; /* Réduit la taille de l'image */
+        height: 150px;
+    }
+}
+
+/* Pour les écrans de taille inférieure à 480px */
+@media (max-width: 480px) {
+    .wish-content {
+        padding: 10px;
+    }
+
+    .wish-content h1 {
+        font-size: 20px; /* Plus petite taille de police */
+    }
+
+    #uploadedPhoto {
+        width: 100px; /* Taille encore plus réduite pour les très petits écrans */
+        height: 100px;
+    }
+}
+
     </style>
 </head>
 <body>
